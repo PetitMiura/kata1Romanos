@@ -26,3 +26,6 @@ def test_ocho_es_uve_y_tres_palitos():
 
 def test_nueve_es_palito_y_equis():
     assert entero_a_romano(9) == "IX"
+
+def test_diez_es_una_equis():
+    assert entero_a_romano(10) == "X"
