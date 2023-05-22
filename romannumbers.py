@@ -1,4 +1,4 @@
-
+'''
 unidades = {
     1: "I",
     5: "V",
@@ -149,9 +149,12 @@ def devolver_total_romano(numero):
 
         num = longitud(num)
 
-        while len(num)>4: # Mientras la lonitud del numero sea mayor a 4 se concatena la representación en numeros romanos de los últimos 3 dígitos 
+        while len(num) != 0: # Mientras la lonitud del numero sea mayor a 4 se concatena la representación en numeros romanos de los últimos 3 dígitos 
                 
-                simbolo_romano = "("* num_parentesis + entero_a_romano(int(num[-3:])) + ")" * num_parentesis + simbolo_romano
+                vari = entero_a_romano(int(num[-3:]))
+                if vari != "":
+                         
+                    simbolo_romano = "("* num_parentesis + vari + ")" * num_parentesis + simbolo_romano
                
                 # Si esta vacía la cadena se restablece.
                 if simbolo_romano == "()":
@@ -159,8 +162,6 @@ def devolver_total_romano(numero):
 
                 num = num[:-3]
                 num_parentesis += 1
-
-        simbolo_romano = "("* num_parentesis + entero_a_romano(int(num)) + ")"* num_parentesis + simbolo_romano
 
     return simbolo_romano
 
@@ -182,4 +183,4 @@ print(devolver_total_romano(4000004040004000040000))
 #un millon es = (M)
 
 
-'''
+
