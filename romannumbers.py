@@ -1,4 +1,4 @@
-'''
+
 unidades = {
     1: "I",
     5: "V",
@@ -85,8 +85,108 @@ def entero_a_romano(n_int):
        
     return resultado
 
+
+
+
+numeros_romanos = {
+    "I": 1,
+    "V": 5,
+    "X": 10,
+    "L": 50,
+    "C": 100,
+    "D": 500,
+    "M": 1000
+}
+
+def comprueba_excepciones(romano):
+    for simbolo in numeros_romanos:
+        if simbolo * 4 in romano:
+            raise RomanNumberError("No se admiten más de tres símbolos iguales")
+        elif simbolo in "VLD" and simbolo * 2 in romano:
+            raise RomanNumberError("No se pueden repetir V, L, o D")
+
+def romano_a_entero(letras):
+    valor_total = 0
+    ultimo_valor = 0
+
+    comprueba_excepciones(letras)
+
+    for numeral in reversed(letras):
+        valor_actual = numeros_romanos[numeral]
+
+        if valor_actual <= 5 and ultimo_valor >= 50:
+            raise RomanNumberError("Resta no permitida")
+        
+        if valor_actual <= 10 and ultimo_valor >= 500:
+            raise RomanNumberError("Resta no permitida")
+
+        if valor_actual >= ultimo_valor:
+            valor_total += valor_actual
+            
+        else:
+            valor_total -= valor_actual
+        ultimo_valor = valor_actual # Si el if i el else comparten lo mismo podemos sacarlos fuera, aqui actualizamos el ultimo valor.
+    return valor_total
+
+
+
+
 if __name__ == "__main__":
     print(entero_a_romano(11))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ''' 
@@ -184,3 +284,4 @@ print(devolver_total_romano(4000004040004000040000))
 
 
 
+'''
