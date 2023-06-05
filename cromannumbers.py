@@ -35,12 +35,91 @@ class RomanNumber:
     '''
     metodos magicos para logica
     ''' 
+
+
     def __eq__(self, other):
+        other = self.__to_roman(other)
         return self.numero == other.numero
     
+    def __lt__(self, other):
+        other = self.__to_roman(other)
+        return self.numero < other.numero
+    
+    def __rlt__(self, other):
+        return other.__lt__(self)
+
+    def __le__(self, other):
+        other = self.__to_roman(other)
+        return self.numero <= other.numero
+    def __gt__(self, other):
+        other = self.__to_roman(other)
+        return self.numero > other.numero
+    
+    def __ge__(self, other):
+        other = self.__to_roman(other)
+        return self.numero >= other.numero
+    
+    def __ne__(self, other):
+        other = self.__to_roman(other)
+        return self.numero != other.numero
+    
+
     '''
     metodos mágicos para aritmética
     '''
+    def __to_roman(self, other):
+        if not isinstance(other, RomanNumber):
+            other = RomanNumber(other)
+        return other
+
+    def __add__(self, other):
+        if not isinstance(other, RomanNumber):
+            other = RomanNumber(other)
+        resultado = self.numero + other.numero
+        return RomanNumber(resultado)
+    
+    def __radd__(self, other):
+        return self.__add__(other)
+    
+    def __sub__(self, other):
+        if not isinstance(other, RomanNumber):
+            other = RomanNumber(other)
+        
+        return RomanNumber(self.numero - other.numero)
+    
+    def __rsub__(self, other):
+        other = self.__to_roman(other)
+
+        return other.__sub__(self)
+
+
+        
+    def __mod__(self, other):
+        if not isinstance(other, RomanNumber):
+            other = RomanNumber(other)
+        resultado = self.numero % other.numero
+        return RomanNumber(resultado)
+
+    def __pow__(self, other):
+        if not isinstance(other, RomanNumber):
+            other = RomanNumber(other)
+        resultado = self.numero ** other.numero
+        return RomanNumber(resultado)
+    
+    def __rpow__(self, other):
+        other = self.__to_roman(other)
+        return other.__pow__(self)
+
+    def __floordiv__(self, other):
+        if not isinstance(other, RomanNumber):
+            other = RomanNumber(other)
+        resultado = self.numero // other.numero
+        return RomanNumber(resultado)
+    
+    def __rfloordiv__(self, other):
+        other = RomanNumber(other)
+        return other.__floordiv__(self)
+        
 
     def __mul__(self, otro):
         if not isinstance(otro, RomanNumber):

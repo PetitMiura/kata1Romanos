@@ -37,3 +37,49 @@ def test_multiplicaciones():
     assert romano1 * "V" == RomanNumber(50)
 
     assert 5 * romano1 == RomanNumber(50)
+
+def test_divisiones():
+    romano1 = RomanNumber("X")
+    romano2 = RomanNumber(2)
+
+    assert romano1 // romano2 == RomanNumber("V")
+    assert romano1 // 2 == RomanNumber("V")
+    assert romano1 // "II" == RomanNumber("V")
+    assert 5 // romano1 == RomanNumber(0)
+
+def test_operaciones_matematicas():
+    romano1 = RomanNumber("X")
+
+    assert romano1 + 5 == RomanNumber(15)
+    assert 5 + romano1 == RomanNumber(15)
+
+    assert romano1 - 5 == RomanNumber(5)
+    assert 15 - romano1 == RomanNumber(5)
+
+    assert romano1 ** 2 == RomanNumber(100)
+    assert 2 ** romano1 == RomanNumber(1024)
+
+def test_operaciones_logicas():
+    romano1 = RomanNumber("X")
+
+    assert romano1 == 10
+    assert 10 == romano1
+
+    assert romano1 > 9 
+    assert 9 < romano1
+    assert romano1 >= 9
+    assert 9 <= romano1
+    assert romano1 >= 10
+    assert 10 <= romano1
+
+    assert romano1 < 11
+    assert 11 > romano1
+    assert romano1 <= 10
+    assert 10 >= romano1
+    assert romano1 <= 11
+    assert 11 >= romano1
+    
+    assert romano1 != 11
+    assert 11 != romano1
+
+
